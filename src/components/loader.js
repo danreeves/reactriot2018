@@ -6,7 +6,8 @@ const bar = {
   width: "100%",
   border: "1px solid black",
   overflow: "hidden",
-  margin: "0.5rem 0"
+  margin: "0.5rem 0",
+  whiteSpace: "nowrap"
 };
 
 const section = {
@@ -14,7 +15,8 @@ const section = {
   height: "calc(100% - 2px)",
   margin: "1px",
   background: "darkblue",
-  float: "left"
+  float: "left",
+  display: "table-cell"
 };
 
 const loader = {
