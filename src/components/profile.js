@@ -4,7 +4,7 @@ import UserState from "../state/user";
 
 const profileStyles = {
   border: "1rem ridge purple",
-  maxWidth: "15%",
+  maxWidth: "25%",
   position: "absolute",
   bottom: 0,
   right: 0,
@@ -21,13 +21,27 @@ export default function Profile() {
     <Subscribe to={[UserState]}>
       {({ state }) => (
         <div style={profileStyles}>
-          <h1>Hello, {state.username}</h1>
+          <table>
+            <tr>
+              <td>Name:</td>
+              <td>{state.username}</td>
+            </tr>
+            <tr>
+              <td>Robot:</td>
+              <td>{String(state.isRobot)}</td>
+            </tr>
+            <tr>
+              <td>Days online:</td>
+              <td>{Math.floor(Math.random() * 1000)}</td>
+            </tr>
+          </table>
           <img
             style={imageStyles}
             src={`https://robohash.org/${state.username}?set=set${
               state.isRobot ? 1 : 2
             }`}
             alt="This is you"
+            title="This is you"
           />
         </div>
       )}
