@@ -5,7 +5,7 @@ import Button from "./button";
 import Box from "./box";
 
 const profileStyles = {
-  widthj: "360px",
+  width: "360px",
   position: "absolute",
   bottom: 0,
   right: 0
@@ -24,7 +24,7 @@ const listStyle = {
   padding: 0,
   listStyle: "none",
   float: "right",
-  maxWidth: "150px"
+  width: "150px"
 };
 
 export default class Profile extends React.PureComponent {
