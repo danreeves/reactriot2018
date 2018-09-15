@@ -5,9 +5,9 @@ export default class Game extends Container {
     things: 0
   };
 
-  addOneThing() {
+  addThings = number => {
     this.setState({
-      things: this.state.things + 1
+      things: this.state.things + number
     });
-  }
+  };
 }

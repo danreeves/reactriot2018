@@ -1,25 +1,33 @@
 import React from "react";
 import Button from "./button";
+import Box from "./box";
 
 export default class Clicker extends React.Component {
   constructor(props) {
     super(props);
 
-    this.timer = this.timer.bind(this);
-    this.interval = this.interval.bind(this);
+    this.state = {
+      processing: false
+    };
   }
 
-  timer() {
-    this.timer = setTimeout(() => {
-      console.log(this.props.name);
+  timer = () => {
+    this.timerId = setTimeout(() => {
+      this.props.addThings(this.props.increment);
+      this.setState({ processing: false });
     }, this.props.time);
-  }
+  };
 
-  interval() {
-    this.interval = setInterval(() => {
+  interval = () => {
+    this.intervalId = setInterval(() => {
       console.log(this.props.name);
     }, this.props.time);
-  }
+  };
+
+  process = () => {
+    this.setState({ processing: true });
+    this.timer();
+  };
 
   componentDidMount() {
     if (this.props.auto) {
@@ -29,21 +37,21 @@ export default class Clicker extends React.Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(this.timer);
-    clearInterval(this.interval);
+    clearTimeout(this.timerId);
+    clearInterval(this.intervalId);
   }
 
   render() {
     return (
-      <div>
+      <Box>
         <h2>{this.props.name}</h2>
-        <Button onClick={this.props.click.buy}>
-          Buy another of these things
+        <Button disabled={this.state.processing} onClick={this.process}>
+          Process {this.props.increment} {this.props.name}s
         </Button>
-        <Button onClick={this.props.click.get}>
-          Get another of these things
+        <Button bottomRight onClick={() => {}}>
+          Upgrade {this.props.name}s
         </Button>
-      </div>
+      </Box>
     );
   }
 }
