@@ -49,18 +49,20 @@ export default class Calendar extends React.PureComponent {
     }
     return (
       <React.Fragment>
+        <h2>{celebration.title}</h2>
         <div
           style={{
             background: celebration.colour,
-            height: "25px",
-            width: "25px",
+            height: "35px",
+            width: "35px",
             textAlign: "center",
-            lineHeight: "25px",
+            lineHeight: "35px",
             float: "left",
             marginRight: "0.5rem"
           }}
-        />
-        <h2>{celebration.title}</h2>
+        >
+          <span style={{ opacity: 0.5 }}>❏</span>
+        </div>
       </React.Fragment>
     );
   }
