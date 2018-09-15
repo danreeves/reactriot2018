@@ -46,7 +46,9 @@ export default function Login() {
               />
             </label>
             <br />
-            <Button onClick={() => user.setIsLoggedIn(true)}>Okay</Button>
+            <Button onClick={() => user.setIsLoggedIn(true)} bottomRight>
+              Okay
+            </Button>
           </fieldset>
         </form>
       )}

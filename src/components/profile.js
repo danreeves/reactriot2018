@@ -62,7 +62,9 @@ export default function Profile() {
               <i> {Math.floor(Math.random() * 1000)}</i>
             </li>
           </ul>
-          <Button onClick={logout}>Delete</Button>
+          <Button bottomRight onClick={logout}>
+            Delete
+          </Button>
         </div>
       )}
     </Subscribe>

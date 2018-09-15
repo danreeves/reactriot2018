@@ -1,8 +1,5 @@
 import React from "react";
 const logoutStyles = {
-  position: "absolute",
-  bottom: "0.5rem",
-  right: "0.5rem",
   border: "5px ridge beige",
   background: "lightgrey",
   cursor: "pointer",
@@ -10,9 +7,21 @@ const logoutStyles = {
   padding: "0.25rem"
 };
 
+const bottomRightStyles = {
+  position: "absolute",
+  bottom: "0.5rem",
+  right: "0.5rem"
+};
+
 export default function Button(props) {
+  const style = Object.assign(
+    {},
+    logoutStyles,
+    props.style,
+    props.bottomRight ? bottomRightStyles : {}
+  );
   return (
-    <button style={logoutStyles} type="button" {...props}>
+    <button type="button" {...props} style={style}>
       {props.children}
     </button>
   );
