@@ -8,7 +8,6 @@ export default function App() {
     <Provider>
       <Subscribe to={[UserState]}>
         {user => {
-          console.log(user.state);
           if (!user.state.isLoggedIn) {
             return <Login />;
           }
