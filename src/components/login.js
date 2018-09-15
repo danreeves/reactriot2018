@@ -6,7 +6,7 @@ export default function Login() {
   return (
     <Subscribe to={[UserState]}>
       {user => (
-        <form>
+        <form onSubmit={e => e.preventDefault()}>
           <fieldset>
             <legend>Log on form:</legend>
             <label>

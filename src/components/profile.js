@@ -19,21 +19,23 @@ const imageStyles = {
 export default function Profile() {
   return (
     <Subscribe to={[UserState]}>
-      {({ state }) => (
+      {({ state, logout }) => (
         <div style={profileStyles}>
           <table>
-            <tr>
-              <td>Name:</td>
-              <td>{state.username}</td>
-            </tr>
-            <tr>
-              <td>Robot:</td>
-              <td>{String(state.isRobot)}</td>
-            </tr>
-            <tr>
-              <td>Days online:</td>
-              <td>{Math.floor(Math.random() * 1000)}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>Name:</td>
+                <td>{state.username}</td>
+              </tr>
+              <tr>
+                <td>Robot:</td>
+                <td>{String(state.isRobot)}</td>
+              </tr>
+              <tr>
+                <td>Days online:</td>
+                <td>{Math.floor(Math.random() * 1000)}</td>
+              </tr>
+            </tbody>
           </table>
           <img
             style={imageStyles}
@@ -43,6 +45,9 @@ export default function Profile() {
             alt="This is you"
             title="This is you"
           />
+          <button type="button" onClick={logout}>
+            Log out
+          </button>
         </div>
       )}
     </Subscribe>
