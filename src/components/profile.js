@@ -24,7 +24,8 @@ const listStyle = {
   margin: 0,
   padding: 0,
   listStyle: "none",
-  float: "right"
+  float: "right",
+  maxWidth: "150px"
 };
 
 export default class Profile extends React.PureComponent {
@@ -71,11 +72,15 @@ export default class Profile extends React.PureComponent {
                 <strong>Online:</strong>
                 <i> true</i>
               </li>
+              <li title="Important messages: 0">
+                <strong>Inbox:</strong>
+                <i>{Number.MIN_SAFE_INTEGER}</i>
+              </li>
             </ul>
             <Button
               bottomRight
               onClick={logout}
-              title="Note: Logging out is punishable by death"
+              title="Note: Logging out is a punishable offense"
             >
               Delete
             </Button>
