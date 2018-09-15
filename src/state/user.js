@@ -16,6 +16,6 @@ export default class User extends Container {
   }
 
   setIsLoggedIn(value) {
-    this.setState({ isLoggedIn: value });
+    this.setState(prev => ({ isLoggedIn: prev.username && value }));
   }
 }
