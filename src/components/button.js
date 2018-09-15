@@ -14,14 +14,14 @@ const bottomRightStyles = {
 };
 
 export default function Button(props) {
-  const style = Object.assign(
-    {},
-    logoutStyles,
-    props.style,
-    props.bottomRight ? bottomRightStyles : {}
-  );
+  const style = {
+    ...logoutStyles,
+    ...props.style,
+    ...(props.bottomRight ? bottomRightStyles : {})
+  };
+  const { bottomRight, ...rest } = props;
   return (
-    <button type="button" {...props} style={style}>
+    <button type="button" {...rest} style={style}>
       {props.children}
     </button>
   );

@@ -39,5 +39,6 @@ export default class User extends Container {
   logout = async () => {
     await this.setState(this.defaultState);
     save(this.state);
+    window.location = window.location;
   };
 }

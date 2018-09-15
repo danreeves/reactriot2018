@@ -2,15 +2,13 @@ import React from "react";
 import { Subscribe } from "unstated";
 import UserState from "../state/user";
 import Button from "./button";
+import Box from "./box";
 
 const profileStyles = {
-  border: "1rem ridge beige",
   maxWidth: "25%",
   position: "absolute",
   bottom: 0,
-  right: 0,
-  padding: "0.5rem",
-  background: "lightslategray"
+  right: 0
 };
 
 const imageStyles = {
@@ -33,7 +31,7 @@ export default function Profile() {
   return (
     <Subscribe to={[UserState]}>
       {({ state, logout }) => (
-        <div style={profileStyles}>
+        <Box style={profileStyles}>
           <img
             height={150}
             width={150}
@@ -65,7 +63,7 @@ export default function Profile() {
           <Button bottomRight onClick={logout}>
             Delete
           </Button>
-        </div>
+        </Box>
       )}
     </Subscribe>
   );
