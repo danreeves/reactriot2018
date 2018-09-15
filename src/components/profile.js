@@ -27,59 +27,61 @@ const listStyle = {
   float: "right"
 };
 
-export default function Profile() {
-  return (
-    <Subscribe to={[UserState]}>
-      {({ state, logout }) => (
-        <Box style={profileStyles}>
-          <img
-            height={150}
-            width={150}
-            style={imageStyles}
-            src={`https://robohash.org/${state.username}?size=150x150&set=set${
-              state.isRobot ? 1 : 2
-            }`}
-            alt="This is you"
-            title="This is you"
-          />
-          <ul style={listStyle}>
-            <li title="Common name">
-              <strong>Name:</strong>
-              <i> {state.username}</i>
-            </li>
-            <li title="Universe Citizen Identifier">
-              <strong>ID:</strong>
-              <i>
-                {" "}
-                {state.username
-                  .split("")
-                  .map(c => c.charCodeAt(0))
-                  .join("")
-                  .slice(0, state.username.length)}
-              </i>
-            </li>
-            <li
-              title={`${
-                state.isRobot ? "Internal Error: 422" : "Life expectancy: 0"
-              }`}
+export default class Profile extends React.PureComponent {
+  render() {
+    return (
+      <Subscribe to={[UserState]}>
+        {({ state, logout }) => (
+          <Box style={profileStyles}>
+            <img
+              height={150}
+              width={150}
+              style={imageStyles}
+              src={`https://robohash.org/${
+                state.username
+              }?size=150x150&set=set${state.isRobot ? 1 : 2}`}
+              alt="This is you"
+              title="This is you"
+            />
+            <ul style={listStyle}>
+              <li title="Common name">
+                <strong>Name:</strong>
+                <i> {state.username}</i>
+              </li>
+              <li title="Universe Citizen Identifier">
+                <strong>ID:</strong>
+                <i>
+                  {" "}
+                  {state.username
+                    .split("")
+                    .map(c => c.charCodeAt(0))
+                    .join("")
+                    .slice(0, state.username.length)}
+                </i>
+              </li>
+              <li
+                title={`${
+                  state.isRobot ? "Internal Error: 422" : "Life expectancy: 0"
+                }`}
+              >
+                <strong>Robot:</strong>
+                <i> {String(state.isRobot)}</i>
+              </li>
+              <li title="Employees are expected to be online at all times">
+                <strong>Online:</strong>
+                <i> true</i>
+              </li>
+            </ul>
+            <Button
+              bottomRight
+              onClick={logout}
+              title="Note: Logging out is punishable by death"
             >
-              <strong>Robot:</strong>
-              <i> {String(state.isRobot)}</i>
-            </li>
-            <li title="Employees are expected to be online at all times">
-              <strong>Online:</strong>
-              <i> true</i>
-            </li>
-          </ul>
-          <Button
-            bottomRight
-            onClick={logout}
-            title="Note: Logging out is punishable by death"
-          >
-            Delete
-          </Button>
-        </Box>
-      )}
-    </Subscribe>
-  );
+              Delete
+            </Button>
+          </Box>
+        )}
+      </Subscribe>
+    );
+  }
 }
