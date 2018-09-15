@@ -13,7 +13,7 @@ export default function Game() {
         {game => (
           <div>
             <Box>
-              <h1>You have {game.state.things} things!</h1>
+              <h1>You have {game.state.things} credits!</h1>
             </Box>
             <Clicker
               time={0}

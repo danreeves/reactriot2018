@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./button";
 import Box from "./box";
+import Loader from "./loader";
 
 export default class Clicker extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export default class Clicker extends React.Component {
 
   timer = () => {
     this.timerId = setTimeout(() => {
-      this.props.addThings(this.props.increment);
+      this.props.addCredits(this.props.increment);
       this.setState({ processing: false });
     }, this.props.time);
   };
@@ -44,6 +45,7 @@ export default class Clicker extends React.Component {
     return (
       <Box>
         <h2>{this.props.name}</h2>
+        <Loader loading={this.state.processing} time={this.props.time} />
         <Button disabled={this.state.processing} onClick={this.process}>
           Process {this.props.increment} {this.props.name}s
         </Button>
