@@ -48,16 +48,23 @@ export default function Profile() {
               <i> {state.username}</i>
             </li>
             <li>
+              <strong>ID:</strong>
+              <i>
+                {" "}
+                {state.username
+                  .split("")
+                  .map(c => c.charCodeAt(0))
+                  .join("")
+                  .slice(0, state.username.length)}
+              </i>
+            </li>
+            <li>
               <strong>Robot:</strong>
               <i> {String(state.isRobot)}</i>
             </li>
             <li>
               <strong>Online:</strong>
               <i> true</i>
-            </li>
-            <li>
-              <strong>Since:</strong>
-              <i> {Math.floor(Math.random() * 1000)}</i>
             </li>
           </ul>
           <Button bottomRight onClick={logout}>
