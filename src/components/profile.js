@@ -1,6 +1,7 @@
 import React from "react";
 import { Subscribe } from "unstated";
 import UserState from "../state/user";
+import Button from "./button";
 
 const profileStyles = {
   border: "1rem ridge beige",
@@ -20,16 +21,6 @@ const imageStyles = {
   background: "lightgrey"
 };
 
-const logoutStyles = {
-  position: "absolute",
-  bottom: "0.5rem",
-  right: "0.5rem",
-  border: "5px ridge beige",
-  background: "lightgrey",
-  cursor: "pointer",
-  fontWeight: "bold"
-};
-
 const listStyle = {
   display: "block",
   margin: 0,
@@ -44,6 +35,8 @@ export default function Profile() {
       {({ state, logout }) => (
         <div style={profileStyles}>
           <img
+            height={150}
+            width={150}
             style={imageStyles}
             src={`https://robohash.org/${state.username}?size=150x150&set=set${
               state.isRobot ? 1 : 2
@@ -69,9 +62,7 @@ export default function Profile() {
               <i> {Math.floor(Math.random() * 1000)}</i>
             </li>
           </ul>
-          <button style={logoutStyles} type="button" onClick={logout}>
-            Delete
-          </button>
+          <Button onClick={logout}>Delete</Button>
         </div>
       )}
     </Subscribe>
