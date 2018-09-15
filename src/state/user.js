@@ -37,7 +37,7 @@ export default class User extends Container {
   };
 
   logout = async () => {
-    this.setState(this.defaultState);
+    await this.setState(this.defaultState);
     save(this.state);
   };
 }

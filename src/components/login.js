@@ -2,6 +2,14 @@ import React from "react";
 import { Subscribe } from "unstated";
 import UserState from "../state/user";
 
+const formStyles = {
+  width: "222px",
+  height: "222px",
+  position: "absolute",
+  top: "50%",
+  left: "50%"
+};
+
 export default function Login() {
   return (
     <Subscribe to={[UserState]}>
