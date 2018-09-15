@@ -43,11 +43,11 @@ export default function Profile() {
             title="This is you"
           />
           <ul style={listStyle}>
-            <li>
+            <li title="Common name">
               <strong>Name:</strong>
               <i> {state.username}</i>
             </li>
-            <li>
+            <li title="Universe Citizen Identifier">
               <strong>ID:</strong>
               <i>
                 {" "}
@@ -58,16 +58,24 @@ export default function Profile() {
                   .slice(0, state.username.length)}
               </i>
             </li>
-            <li>
+            <li
+              title={`${
+                state.isRobot ? "Internal Error: 422" : "Life expectancy: 0"
+              }`}
+            >
               <strong>Robot:</strong>
               <i> {String(state.isRobot)}</i>
             </li>
-            <li>
+            <li title="Employees are expected to be online at all times">
               <strong>Online:</strong>
               <i> true</i>
             </li>
           </ul>
-          <Button bottomRight onClick={logout}>
+          <Button
+            bottomRight
+            onClick={logout}
+            title="Note: Logging out is punishable by death"
+          >
             Delete
           </Button>
         </Box>
