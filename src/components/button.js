@@ -1,10 +1,12 @@
 import React from "react";
-const logoutStyles = {
+
+const buttonStyles = {
   border: "5px ridge beige",
   background: "beige",
   cursor: "pointer",
   fontWeight: "bold",
-  padding: "0.25rem"
+  padding: "0.25rem",
+  userSelect: "none"
 };
 
 const bottomRightStyles = {
@@ -15,7 +17,7 @@ const bottomRightStyles = {
 
 export default function Button(props) {
   const style = {
-    ...logoutStyles,
+    ...buttonStyles,
     ...props.style,
     ...(props.bottomRight ? bottomRightStyles : {})
   };
