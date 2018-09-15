@@ -9,7 +9,6 @@ export default function Game() {
     <Subscribe to={[UserState]}>
       {({ state }) => (
         <div>
-          <h1>Hello, {state.username}</h1>
           <Profile />
         </div>
       )}
