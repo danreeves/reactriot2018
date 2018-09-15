@@ -16,7 +16,7 @@ export default class Clicker extends React.Component {
 
   timer = () => {
     this.timerId = setTimeout(() => {
-      this.props.addCredits(this.props.value);
+      this.props.addCredits(this.state.count * this.props.value);
       this.setState({ processing: false });
     }, this.props.time);
   };
@@ -59,10 +59,13 @@ export default class Clicker extends React.Component {
     const canAffordUpgrade = credits > upgradeCost;
     return (
       <Box style={{ maxWidth: "25%" }}>
-        <h2>{this.props.name}</h2>
+        <h2>
+          {this.props.name}{" "}
+          <small>{this.state.count * this.props.value} credits</small>
+        </h2>
         <Loader loading={this.state.processing} time={this.props.time} />
         <Button disabled={this.state.processing} onClick={this.process}>
-          Process {this.props.value} {this.props.name}s
+          Process {this.state.count} {this.props.name}s
         </Button>
         <Button
           disabled={!canAffordUpgrade}

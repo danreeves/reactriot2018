@@ -3,6 +3,8 @@ import { Container } from "unstated";
 export default class Game extends Container {
   state = {
     credits: 0,
+    totalCredits: 0,
+    maxCredits: 0,
     clickers: [
       {
         time: 0,
@@ -14,7 +16,7 @@ export default class Game extends Container {
       {
         time: 1000,
         name: "lol",
-        value: 10,
+        value: 5,
         unlockedAt: 25,
         upgradeCost: (value, count) => value * 1.55 ** count
       }
@@ -23,7 +25,9 @@ export default class Game extends Container {
 
   addCredits = number => {
     this.setState({
-      credits: this.state.credits + number
+      credits: this.state.credits + number,
+      totalCredits: this.state.totalCredits + number,
+      maxCredits: Math.max(this.state.credits + number, this.state.maxCredits)
     });
   };
 

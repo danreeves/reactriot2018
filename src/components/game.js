@@ -17,7 +17,8 @@ export default function Game() {
               <h1>You have {pretty(game.state.credits)} credits!</h1>
             </Box>
             {game.state.clickers.map(clicker => {
-              if (game.state.credits < clicker.unlockedAt) {
+              console.log(game.state.maxCredits, clicker.unlockedAt);
+              if (game.state.maxCredits < clicker.unlockedAt) {
                 return null;
               }
               return (
