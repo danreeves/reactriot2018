@@ -20,7 +20,7 @@ export default class User extends Container {
   constructor() {
     super();
     const loadedState = load();
-    this.state = loadedState ? loadedState : defaultState;
+    this.state = loadedState ? loadedState : this.defaultState;
   }
 
   setUsername = value => {
