@@ -6,10 +6,12 @@
     serif;
   padding: 0;
   margin: 0;
+  user-select: none;
 }
 
 html,
 body,
 #app {
   background: #00807f;
+  user-select: none;
 }
