@@ -5,14 +5,13 @@ import Button from "./button";
 import Box from "./box";
 
 const profileStyles = {
-  maxWidth: "25%",
+  widthj: "360px",
   position: "absolute",
   bottom: 0,
   right: 0
 };
 
 const imageStyles = {
-  maxWidth: "100%",
   border: "5px ridge beige",
   float: "left",
   marginRight: "0.5rem",
