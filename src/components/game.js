@@ -1,8 +1,8 @@
 import React from "react";
 import { Subscribe } from "unstated";
 import Profile from "./profile";
-import Button from "./button";
 import GameState from "../state/game";
+import Clicker from "./clicker";
 
 export default function Game() {
   return (
@@ -10,9 +10,8 @@ export default function Game() {
       {game => (
         <div>
           <h1>You have {game.state.things} things!</h1>
-          <Button onClick={() => game.addOneThing()} type="button">
-            Make a thing!
-          </Button>
+          <Clicker time={1000} name="Hello" buy={() => game.buyOneThing()} />
+          <Clicker time={500} name="lol" />
           <Profile />
         </div>
       )}

@@ -4,17 +4,19 @@ import Login from "./login";
 import Game from "./game";
 import UserState from "../state/user";
 
-export default function App() {
-  return (
-    <Provider>
-      <Subscribe to={[UserState]}>
-        {user => {
-          if (!user.state.isLoggedIn) {
-            return <Login />;
-          }
-          return <Game />;
-        }}
-      </Subscribe>
-    </Provider>
-  );
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider>
+        <Subscribe to={[UserState]}>
+          {user => {
+            if (!user.state.isLoggedIn) {
+              return <Login />;
+            }
+            return <Game />;
+          }}
+        </Subscribe>
+      </Provider>
+    );
+  }
 }
