@@ -1,7 +1,8 @@
 import React from "react";
 import { Subscribe } from "unstated";
-import Profile from "./profile";
+import pretty from "../utils/pretty";
 import GameState from "../state/game";
+import Profile from "./profile";
 import Clicker from "./clicker";
 import Box from "./box";
 import Calendar from "./calendar";
@@ -13,7 +14,7 @@ export default function Game() {
         {game => (
           <div>
             <Box style={{ maxWidth: "70%" }}>
-              <h1>You have {game.state.credits} credits!</h1>
+              <h1>You have {pretty(game.state.credits)} credits!</h1>
             </Box>
             {game.state.clickers.map(clicker => {
               if (game.state.credits < clicker.unlockedAt) {

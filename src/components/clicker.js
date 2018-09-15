@@ -1,4 +1,5 @@
 import React from "react";
+import pretty from "../utils/pretty";
 import Button from "./button";
 import Box from "./box";
 import Loader from "./loader";
@@ -68,7 +69,7 @@ export default class Clicker extends React.Component {
           bottomRight
           onClick={this.upgrade(upgradeCost)}
         >
-          Upgrade {this.props.name}s for {upgradeCost} credits
+          Upgrade {this.props.name}s for {pretty(upgradeCost)} credits
         </Button>
       </Box>
     );

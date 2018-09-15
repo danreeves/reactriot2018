@@ -15,7 +15,8 @@ export default class Game extends Container {
         time: 1000,
         name: "lol",
         value: 10,
-        unlockedAt: 25
+        unlockedAt: 25,
+        upgradeCost: (value, count) => value * 1.55 ** count
       }
     ]
   };
