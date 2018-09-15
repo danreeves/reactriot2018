@@ -33,7 +33,6 @@ export default class Clicker extends React.Component {
     if (this.props.auto) {
       this.interval();
     }
-    this.timer();
   }
 
   componentWillUnmount() {
