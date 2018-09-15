@@ -19,13 +19,13 @@ export default function Game() {
               time={0}
               name="ello"
               increment={1}
-              addThings={game.addThings}
+              addCredits={game.addCredits}
             />
             <Clicker
               time={1000}
               name="lol"
               increment={10}
-              addThings={game.addThings}
+              addCredits={game.addCredits}
             />
           </div>
         )}
