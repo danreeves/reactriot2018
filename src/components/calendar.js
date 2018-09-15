@@ -5,6 +5,7 @@ import { fetchDate } from "../utils/calendar";
 import Box from "./box";
 
 const calendarStyles = {
+  maxWidth: "20%",
   position: "absolute",
   top: 0,
   right: 0

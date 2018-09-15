@@ -43,7 +43,7 @@ export default class Clicker extends React.Component {
 
   render() {
     return (
-      <Box>
+      <Box style={{ maxWidth: "25%" }}>
         <h2>{this.props.name}</h2>
         <Loader loading={this.state.processing} time={this.props.time} />
         <Button disabled={this.state.processing} onClick={this.process}>

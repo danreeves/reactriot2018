@@ -12,7 +12,7 @@ export default function Game() {
       <Subscribe to={[GameState]}>
         {game => (
           <div>
-            <Box>
+            <Box style={{ maxWidth: "70%" }}>
               <h1>You have {game.state.credits} credits!</h1>
             </Box>
             <Clicker
