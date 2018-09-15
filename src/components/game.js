@@ -15,18 +15,23 @@ export default function Game() {
             <Box style={{ maxWidth: "70%" }}>
               <h1>You have {game.state.credits} credits!</h1>
             </Box>
-            <Clicker
-              time={0}
-              name="ello"
-              increment={1}
-              addCredits={game.addCredits}
-            />
-            <Clicker
-              time={1000}
-              name="lol"
-              increment={10}
-              addCredits={game.addCredits}
-            />
+            {game.state.clickers.map(clicker => {
+              if (game.state.credits < clicker.unlockedAt) {
+                return null;
+              }
+              return (
+                <Clicker
+                  key={clicker.name}
+                  time={clicker.time}
+                  name={clicker.name}
+                  value={clicker.value}
+                  credits={game.state.credits}
+                  getUpgradeCost={clicker.upgradeCost}
+                  addCredits={game.addCredits}
+                  removeCredits={game.removeCredits}
+                />
+              );
+            })}
           </div>
         )}
       </Subscribe>
