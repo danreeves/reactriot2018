@@ -53,10 +53,13 @@ export default class Calendar extends React.PureComponent {
         <div
           style={{
             background: celebration.colour,
+            borderColor: celebration.colour,
+            borderStyle: "ridge",
+            borderWidth: "5px",
             height: "35px",
             width: "35px",
             textAlign: "center",
-            lineHeight: "35px",
+            lineHeight: "25px",
             float: "left",
             marginRight: "0.5rem"
           }}
