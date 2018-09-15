@@ -1,7 +1,7 @@
 import React from "react";
 const logoutStyles = {
   border: "5px ridge beige",
-  background: "lightgrey",
+  background: "beige",
   cursor: "pointer",
   fontWeight: "bold",
   padding: "0.25rem"
