@@ -30,7 +30,10 @@ export default class Calendar extends React.PureComponent {
           this.getCalendaInfo();
         }
       );
-    }, 60000);
+    }, 30000);
+
+    const audio = document.querySelector("#music");
+    audio.play();
   }
 
   componentWillUnmoumt() {
@@ -64,7 +67,7 @@ export default class Calendar extends React.PureComponent {
             marginRight: "0.5rem"
           }}
         >
-          <span style={{ opacity: 0.5 }}>❏</span>
+          ❏
         </div>
       </React.Fragment>
     );
