@@ -17,7 +17,6 @@ export default function Game() {
               <h1>You have {pretty(game.state.credits)} credits!</h1>
             </Box>
             {game.state.clickers.map(clicker => {
-              console.log(game.state.maxCredits, clicker.unlockedAt);
               if (game.state.maxCredits < clicker.unlockedAt) {
                 return null;
               }
@@ -34,6 +33,16 @@ export default function Game() {
                 />
               );
             })}
+            <Clicker
+              auto
+              time={5000}
+              name="Auto click"
+              value={1}
+              credits={game.state.credits}
+              getUpgradeCost={(value, count) => value * 2 ** count}
+              addCredits={game.addCredits}
+              removeCredits={game.removeCredits}
+            />
           </div>
         )}
       </Subscribe>

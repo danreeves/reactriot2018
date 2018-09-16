@@ -7,16 +7,19 @@ const bar = {
   border: "1px solid black",
   overflow: "hidden",
   margin: "0.5rem 0",
-  whiteSpace: "nowrap"
+  whiteSpace: "nowrap",
+  padding: "1px",
+  background: "darkgrey",
+  position: "relative"
 };
 
-const section = {
-  width: "15px",
+const bars = {
+  position: "absolute",
   height: "calc(100% - 2px)",
-  margin: "1px",
-  background: "darkblue",
-  float: "left",
-  display: "table-cell"
+  width: "100%",
+  backgroundImage:
+    "linear-gradient(90deg, darkblue 44.12%, darkgrey 44.12%, darkgrey 50%, darkblue 50%, darkblue 94.12%, darkgrey 94.12%, darkgrey 100%)",
+  backgroundSize: "34.00px 34.00px"
 };
 
 const loader = {
@@ -34,26 +37,7 @@ export default function Loader(props) {
   };
   return (
     <div style={bar}>
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
-      <div style={section} />
+      <div style={bars} />
       <div style={loadbar} />
     </div>
   );

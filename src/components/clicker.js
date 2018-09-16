@@ -22,8 +22,13 @@ export default class Clicker extends React.Component {
   };
 
   interval = () => {
-    this.intervalId = setInterval(() => {
-      console.log(this.props.name);
+    this.setState({ processing: true });
+    this.intervalId = setTimeout(() => {
+      this.props.addCredits(this.state.count * this.props.value);
+      this.setState({ processing: false });
+      setTimeout(() => {
+        this.interval();
+      }, 0);
     }, this.props.time);
   };
 
@@ -43,7 +48,9 @@ export default class Clicker extends React.Component {
 
   componentDidMount() {
     if (this.props.auto) {
-      this.interval();
+      setTimeout(() => {
+        this.interval();
+      }, 0);
     }
   }
 
