@@ -32,16 +32,6 @@ export default class Calendar extends React.PureComponent {
         }
       );
     }, 30000);
-
-    // Global stuff and hacks
-    // Play the music
-    const audio = document.querySelector("#music");
-    audio.play();
-    // Update the tab title
-    document.title = "❏DANCorp. | Never forget who you're working for...";
-    HACKBIT_VOTING_WIDGET.render(
-      document.querySelector("#hackbit-vote-widget")
-    );
   }
 
   componentWillUnmoumt() {

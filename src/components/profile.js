@@ -28,6 +28,31 @@ const listStyle = {
 };
 
 export default class Profile extends React.PureComponent {
+  state = { soundOn: true };
+
+  componentDidMount() {
+    // Global stuff and hacks
+    // Play the music
+    const audio = document.querySelector("#music");
+    audio.play();
+    // Update the tab title
+    document.title = "❏DANCorp. | Never forget who you're working for...";
+    HACKBIT_VOTING_WIDGET.render(
+      document.querySelector("#hackbit-vote-widget")
+    );
+    this.setState({ soundOn: !audio.paused });
+  }
+
+  toggleSound = () => {
+    const audio = document.querySelector("#music");
+    if (this.state.soundOn) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    this.setState(state => ({ soundOn: !state.soundOn }));
+  };
+
   render() {
     return (
       <Subscribe to={[UserState]}>
@@ -76,6 +101,13 @@ export default class Profile extends React.PureComponent {
                 <i>{Number.MIN_SAFE_INTEGER}</i>
               </li>
             </ul>
+            <Button
+              style={{ position: "absolute", bottom: "0.5rem" }}
+              onClick={this.toggleSound}
+              title="Rumors that company music contains subliminal messages have not been proven to be true."
+            >
+              {this.state.soundOn ? "🔇" : "🔊"}
+            </Button>
             <Button
               bottomRight
               onClick={logout}

@@ -39,6 +39,7 @@ export default class User extends Container {
   logout = async () => {
     await this.setState(this.defaultState);
     save(this.state);
+    window.localStorage.setItem("gamestate", null);
     window.location = window.location;
   };
 }
