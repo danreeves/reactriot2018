@@ -1,0 +1,12 @@
+language: node_js
+env:
+  - SURGE_LOGIN=hey+reactriot2018@danreev.es
+  - SURGE_TOKEN=0c2a83c7890aa0a060c37a9b88cffd9d
+script:
+  - npm run build
+deploy:
+  skip_cleanup: true
+  provider: surge
+  project: ./dist/
+  domain: dan-corp.surge.sh
+  on: master
