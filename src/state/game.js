@@ -7,31 +7,38 @@ export default class Game extends Container {
     maxCredits: 0,
     clickers: [
       {
-        time: 1,
+        time: 100,
         name: "ello",
         value: 1,
         unlockedAt: 0,
-        upgradeCost: (value, count) => value * 1.2 ** count
+        upgradeCost: (value, count) => value * 1.21 ** count
       },
       {
-        time: 500,
+        time: 3500,
         name: "lol",
-        value: 5,
+        value: 40,
         unlockedAt: 25,
-        upgradeCost: (value, count) => value * 1.17 ** count
+        upgradeCost: (value, count) => value * 1.18 ** count
       },
       {
-        time: 1000,
+        time: 8000,
         name: "lol",
-        value: 10,
-        unlockedAt: 200,
+        value: 90,
+        unlockedAt: 250,
+        upgradeCost: (value, count) => value * 1.16 ** count
+      },
+      {
+        time: 12000,
+        name: "lol",
+        value: 135,
+        unlockedAt: 1500,
         upgradeCost: (value, count) => value * 1.15 ** count
       },
       {
-        time: 5000,
+        time: 20000,
         name: "lol",
-        value: 50,
-        unlockedAt: 1000,
+        value: 240,
+        unlockedAt: 5000,
         upgradeCost: (value, count) => value * 1.14 ** count
       }
     ]
