@@ -65,7 +65,7 @@ export default class Clicker extends React.Component {
     const upgradeCost = getUpgradeCost(value, count);
     const canAffordUpgrade = credits > upgradeCost;
     return (
-      <Box style={{ maxWidth: "25%", float: "left" }}>
+      <Box style={{ float: "left" }}>
         <h2>
           {this.props.name}{" "}
           <small>{this.state.count * this.props.value} credits</small>
