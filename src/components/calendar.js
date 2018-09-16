@@ -39,6 +39,9 @@ export default class Calendar extends React.PureComponent {
     audio.play();
     // Update the tab title
     document.title = "❏DANCorp. | Never forget who you're working for...";
+    HACKBIT_VOTING_WIDGET.render(
+      document.querySelector("#hackbit-vote-widget")
+    );
   }
 
   componentWillUnmoumt() {
@@ -84,6 +87,8 @@ export default class Calendar extends React.PureComponent {
         {this.renderCelebration(this.state.celebration)}
         <div>{addYears(this.state.date, 103).toDateString()}</div>
         <div>{this.state.time.toTimeString().slice(0, 8)}</div>
+        <hr />
+        <div id="hackbit-vote-widget" />
       </Box>
     );
   }

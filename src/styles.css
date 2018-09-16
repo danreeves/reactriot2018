@@ -15,3 +15,41 @@ body,
   background: #00807f;
   user-select: none;
 }
+
+hr {
+  border: none;
+  border-top: 5px ridge beige;
+  margin: 0.5rem 0;
+}
+
+#hackbit-vote-widget .hb-link,
+#hackbit-vote-widget .hb-vote-widget {
+  background: none;
+  color: black;
+  text-shadow: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+#hackbit-vote-widget img {
+  display: none;
+}
+#hackbit-vote-widget .hb-link::after {
+  content: "ReactЯiot";
+}
+#hackbit-vote-widget .hb-vote-btn {
+  border: 5px ridge beige;
+  background: beige;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.25rem;
+  user-select: none;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  color: black;
+  text-shadow: none;
+  border-radius: 0;
+}
+#hackbit-vote-widget .hb-vote-btn:hover {
+  box-shadow: none;
+}
