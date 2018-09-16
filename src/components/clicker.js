@@ -65,7 +65,7 @@ export default class Clicker extends React.Component {
     const upgradeCost = getUpgradeCost(value, count);
     const canAffordUpgrade = credits > upgradeCost;
     return (
-      <Box style={{ maxWidth: "25%" }}>
+      <Box style={{ maxWidth: "25%", float: "left" }}>
         <h2>
           {this.props.name}{" "}
           <small>{this.state.count * this.props.value} credits</small>
@@ -75,8 +75,8 @@ export default class Clicker extends React.Component {
           Process {this.state.count} {this.props.name}s
         </Button>
         <Button
+          style={{ marginLeft: "1rem" }}
           disabled={!canAffordUpgrade}
-          bottomRight
           onClick={this.upgrade(upgradeCost)}
         >
           Upgrade {this.props.name}s for {pretty(upgradeCost)} credits
