@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html",
+    "deploy": "SURGE_LOGIN=hey+reactriot2018@danreev.es SURGE_TOKEN=0c2a83c7890aa0a060c37a9b88cffd9d surge ./dist dan-corp.surge.sh",
     "precommit": "pretty-quick --staged"
   },
   "repository": {
@@ -34,6 +35,7 @@
     "pretty-quick": "^1.6.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
+    "surge": "^0.20.1",
     "unstated": "^2.1.1"
   }
 }
