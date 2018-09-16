@@ -24,7 +24,8 @@ const legendStyles = {
 };
 
 const logoType = {
-  fontFamily: "Impact",
+  fontFamily:
+    "Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif",
   color: "black"
 };
 

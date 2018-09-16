@@ -2,7 +2,8 @@ import React from "react";
 
 const logoStyle = {
   position: "absolute",
-  fontFamily: "IMPACT",
+  fontFamily:
+    "Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif",
   top: "40%",
   backgroundColor: "rgba(0,0,0,0.5)",
   WebkitBackgroundClip: "text",
@@ -17,8 +18,8 @@ const logoStyle = {
 const taglineStyle = {
   ...logoStyle,
   top: "calc(40% + 120px)",
-  fontFamily: "cursive",
-  fontSize: "1rem"
+  fontFamily: "Brush Script MT,cursive",
+  fontSize: "1.3rem"
 };
 
 export default function Logo() {
