@@ -37,9 +37,6 @@ export default class Profile extends React.PureComponent {
     audio.play();
     // Update the tab title
     document.title = "❏DANCorp. | Never forget who you're working for...";
-    // HACKBIT_VOTING_WIDGET.render(
-    //   document.querySelector("#hackbit-vote-widget")
-    // );
     this.setState({ soundOn: !audio.paused });
   }
 

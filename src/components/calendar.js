@@ -77,8 +77,6 @@ export default class Calendar extends React.PureComponent {
         {this.renderCelebration(this.state.celebration)}
         <div>{addYears(this.state.date, 103).toDateString()}</div>
         <div>{this.state.time.toTimeString().slice(0, 8)}</div>
-        <hr />
-        <div id="hackbit-vote-widget" />
       </Box>
     );
   }
