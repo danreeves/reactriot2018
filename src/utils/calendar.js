@@ -1,11 +1,235 @@
-import format from "date-fns/format";
-import get from "lodash-es/get";
+// General Roman Calendar data in English
+// source: https://en.wikipedia.org/wiki/General_Roman_Calendar
+const calendarData = {
+  1: {
+    2: [{ title: "Saints Basil the Great and Gregory Nazianzen, bishops and doctors" }],
+    3: [{ title: "The Most Holy Name of Jesus" }],
+    7: [{ title: "Saint Raymond of Penyafort, priest" }],
+    13: [{ title: "Saint Hilary of Poitiers, bishop and doctor" }],
+    17: [{ title: "Saint Anthony of Egypt, abbot" }],
+    20: [{ title: "Saint Fabian, pope and martyr", colour: "red" }, { title: "Saint Sebastian, martyr", colour: "red" }],
+    21: [{ title: "Saint Agnes, virgin and martyr", colour: "red" }],
+    22: [{ title: "Saint Vincent, deacon and martyr", colour: "red" }],
+    24: [{ title: "Saint Francis de Sales, bishop and doctor" }],
+    25: [{ title: "The Conversion of Saint Paul, apostle" }],
+    26: [{ title: "Saints Timothy and Titus, bishops" }],
+    27: [{ title: "Saint Angela Merici, virgin" }],
+    28: [{ title: "Saint Thomas Aquinas, priest and doctor" }],
+    31: [{ title: "Saint John Bosco, priest" }]
+  },
+  2: {
+    2: [{ title: "Presentation of the Lord" }],
+    3: [{ title: "Saint Blase, bishop and martyr", colour: "red" }, { title: "Saint Ansgar, bishop" }],
+    5: [{ title: "Saint Agatha, virgin and martyr", colour: "red" }],
+    6: [{ title: "Saints Paul Miki and companions, martyrs", colour: "red" }],
+    8: [{ title: "Saint Jerome Emiliani, priest" }, { title: "Saint Josephine Bakhita, virgin" }],
+    10: [{ title: "Saint Scholastica, virgin" }],
+    11: [{ title: "Our Lady of Lourdes" }],
+    14: [{ title: "Saints Cyril, monk, and Methodius, bishop" }],
+    17: [{ title: "Seven Holy Founders of the Servite Order" }],
+    21: [{ title: "Saint Peter Damian, bishop and doctor of the Church" }],
+    22: [{ title: "Chair of Saint Peter, apostle" }],
+    23: [{ title: "Saint Polycarp, bishop and martyr" }]
+  },
+  3: {
+    4: [{ title: "Saint Casimir" }],
+    7: [{ title: "Saints Perpetua and Felicity, martyrs", colour: "red" }],
+    8: [{ title: "Saint John of God, religious" }],
+    9: [{ title: "Saint Frances of Rome, religious" }],
+    17: [{ title: "Saint Patrick, bishop" }],
+    18: [{ title: "Saint Cyril of Jerusalem, bishop and doctor" }],
+    19: [{ title: "Saint Joseph Husband of the Blessed Virgin Mary" }],
+    23: [{ title: "Saint Turibius of Mogrovejo, bishop" }],
+    25: [{ title: "Annunciation of the Lord" }]
+  },
+  4: {
+    2: [{ title: "Saint Francis of Paola, hermit" }],
+    4: [{ title: "Saint Isidore, bishop and doctor of the Church" }],
+    5: [{ title: "Saint Vincent Ferrer, priest" }],
+    7: [{ title: "Saint John Baptist de la Salle, priest" }],
+    11: [{ title: "Saint Stanislaus, bishop and martyr", colour: "red" }],
+    13: [{ title: "Saint Martin I, pope and martyr", colour: "red" }],
+    21: [{ title: "Saint Anselm of Canterbury, bishop and doctor of the Church" }],
+    23: [{ title: "Saint George, martyr", colour: "red" }, { title: "Saint Adalbert, bishop and martyr", colour: "red" }],
+    24: [{ title: "Saint Fidelis of Sigmaringen, priest and martyr", colour: "red" }],
+    25: [{ title: "Saint Mark the Evangelist", colour: "red" }],
+    28: [{ title: "Saint Peter Chanel, priest and martyr", colour: "red" }, { title: "Saint Louis Grignon de Montfort, priest" }],
+    29: [{ title: "Saint Catherine of Siena, virgin and doctor of the Church" }],
+    30: [{ title: "Saint Pius V, pope" }]
+  },
+  5: {
+    1: [{ title: "Saint Joseph the Worker" }],
+    2: [{ title: "Saint Athanasius, bishop and doctor" }],
+    3: [{ title: "Saints Philip and James, Apostles", colour: "red" }],
+    12: [{ title: "Saints Nereus and Achilleus, martyrs", colour: "red" }, { title: "Saint Pancras, martyr", colour: "red" }],
+    13: [{ title: "Our Lady of Fatima" }],
+    14: [{ title: "Saint Matthias the Apostle", colour: "red" }],
+    18: [{ title: "Saint John I, pope and martyr", colour: "red" }],
+    20: [{ title: "Saint Bernardine of Siena, priest" }],
+    21: [{ title: "Saint Christopher Magallanes and companions, martyrs", colour: "red" }],
+    22: [{ title: "Saint Rita of Cascia" }],
+    25: [{ title: "Saint Bede the Venerable, priest and doctor" }, { title: "Saint Gregory VII, pope" }, { title: "Saint Mary Magdalene de Pazzi, virgin" }],
+    26: [{ title: "Saint Philip Neri, priest" }],
+    27: [{ title: "Saint Augustine (Austin) of Canterbury, bishop" }],
+    31: [{ title: "Visitation of the Blessed Virgin Mary" }]
+  },
+  6: {
+    1: [{ title: "Saint Justin Martyr", colour: "red" }],
+    2: [{ title: "Saints Marcellinus and Peter, martyrs", colour: "red" }],
+    3: [{ title: "Saints Charles Lwanga and companions, martyrs", colour: "red" }],
+    5: [{ title: "Saint Boniface, bishop and martyr", colour: "red" }],
+    6: [{ title: "Saint Norbert, bishop" }],
+    9: [{ title: "Saint Ephrem, deacon and doctor" }],
+    11: [{ title: "Saint Barnabas the Apostle", colour: "red" }],
+    13: [{ title: "Saint Anthony of Padua, priest and doctor" }],
+    19: [{ title: "Saint Romuald, abbot" }],
+    21: [{ title: "Saint Aloysius Gonzaga, religious" }],
+    22: [{ title: "Saint Paulinus of Nola, bishop" }, { title: "Saints John Fisher, bishop and martyr and Thomas More, martyr", colour: "red" }],
+    24: [{ title: "Birth of Saint John the Baptist" }],
+    27: [{ title: "Saint Cyril of Alexandria, bishop and doctor" }],
+    28: [{ title: "Saint Irenaeus, bishop and martyr", colour: "red" }],
+    29: [{ title: "Saints Peter and Paul, Apostles", colour: "red" }],
+    30: [{ title: "First Martyrs of the Church of Rome", colour: "red" }]
+  },
+  7: {
+    3: [{ title: "Saint Thomas the Apostle", colour: "red" }],
+    4: [{ title: "Saint Elizabeth of Portugal" }],
+    5: [{ title: "Saint Anthony Zaccaria, priest" }],
+    6: [{ title: "Saint Maria Goretti, virgin and martyr", colour: "red" }],
+    9: [{ title: "Saint Augustine Zhao Rong and companions, martyrs", colour: "red" }],
+    11: [{ title: "Saint Benedict, abbot" }],
+    13: [{ title: "Saint Henry" }],
+    14: [{ title: "Saint Camillus de Lellis, priest" }],
+    15: [{ title: "Saint Bonaventure, bishop and doctor" }],
+    16: [{ title: "Our Lady of Mount Carmel" }],
+    20: [{ title: "Saint Apollinaris" }],
+    21: [{ title: "Saint Lawrence of Brindisi, priest and doctor" }],
+    22: [{ title: "Saint Mary Magdalene" }],
+    23: [{ title: "Saint Birgitta, religious" }],
+    24: [{ title: "Saint Sharbel Makhluf, hermit" }],
+    25: [{ title: "Saint James, apostle", colour: "red" }],
+    26: [{ title: "Saints Joachim and Anne" }],
+    29: [{ title: "Saint Martha", colour: "red" }],
+    30: [{ title: "Saint Peter Chrysologus, bishop and doctor" }],
+    31: [{ title: "Saint Ignatius of Loyola, priest" }]
+  },
+  8: {
+    1: [{ title: "Saint Alphonsus Maria de Liguori, bishop and doctor of the Church" }],
+    2: [{ title: "Saint Eusebius of Vercelli, bishop" }, { title: "Saint Peter Julian Eymard, priest" }],
+    4: [{ title: "Saint Jean Vianney (the Curé of Ars), priest" }],
+    5: [{ title: "Dedication of the Basilica of Saint Mary Major" }],
+    6: [{ title: "Transfiguration of the Lord" }],
+    7: [{ title: "Saint Sixtus II, pope, and companions, martyrs", colour: "red" }, { title: "Saint Cajetan, priest" }],
+    8: [{ title: "Saint Dominic, priest" }],
+    9: [{ title: "Saint Teresa Benedicta of the Cross (Edith Stein), virgin and martyr", colour: "red" }],
+    10: [{ title: "Saint Lawrence, deacon and martyr", colour: "red" }],
+    11: [{ title: "Saint Clare, virgin" }],
+    12: [{ title: "Saint Jane Frances de Chantal, religious" }],
+    13: [{ title: "Saints Pontian, pope, and Hippolytus, priest, martyrs", colour: "red" }],
+    14: [{ title: "Saint Maximilian Mary Kolbe, priest and martyr", colour: "red" }],
+    15: [{ title: "Assumption of the Blessed Virgin Mary" }],
+    16: [{ title: "Saint Stephen of Hungary" }],
+    19: [{ title: "Saint John Eudes, priest" }],
+    20: [{ title: "Saint Bernard of Clairvaux, abbot and doctor of the Church" }],
+    21: [{ title: "Saint Pius X, pope" }],
+    22: [{ title: "Queenship of Blessed Virgin Mary" }],
+    23: [{ title: "Saint Rose of Lima, virgin" }],
+    24: [{ title: "Saint Bartholomew the Apostle", colour: "red" }],
+    25: [{ title: "Saint Louis" }, { title: "Saint Joseph of Calasanz, priest" }],
+    27: [{ title: "Saint Monica" }],
+    28: [{ title: "Saint Augustine of Hippo, bishop and doctor of the Church" }],
+    29: [{ title: "The Beheading of Saint John the Baptist, martyr", colour: "red" }]
+  },
+  9: {
+    3: [{ title: "Saint Gregory the Great, pope and doctor" }],
+    8: [{ title: "Birth of the Blessed Virgin Mary" }],
+    9: [{ title: "Saint Peter Claver, priest" }],
+    12: [{ title: "Holy Name of the Blessed Virgin Mary" }],
+    13: [{ title: "Saint John Chrysostom, bishop and doctor" }],
+    14: [{ title: "Triumph of the Holy Cross", colour: "red" }],
+    15: [{ title: "Our Lady of Sorrows" }],
+    16: [{ title: "Saints Cornelius, pope, and Cyprian, bishop, martyrs", colour: "red" }],
+    17: [{ title: "Saint Robert Bellarmine, bishop and doctor" }],
+    19: [{ title: "Saint Januarius, bishop and martyr", colour: "red" }],
+    20: [{ title: "Saint Andrew Kim Taegon, priest, and Paul Chong Hasang and companions, martyrs", colour: "red" }],
+    21: [{ title: "Saint Matthew the Evangelist, Apostle, Evangelist", colour: "red" }],
+    23: [{ title: "Saint Pio of Pietrelcina (Padre Pio), priest" }],
+    26: [{ title: "Saints Cosmas and Damian, martyrs", colour: "red" }],
+    27: [{ title: "Saint Vincent de Paul, priest" }],
+    28: [{ title: "Saint Wenceslaus, martyr", colour: "red" }, { title: "Saints Lawrence Ruiz and companions, martyrs", colour: "red" }],
+    29: [{ title: "Saints Michael, Gabriel and Raphael, Archangels" }],
+    30: [{ title: "Saint Jerome, priest and doctor" }]
+  },
+  10: {
+    1: [{ title: "Saint Thérèse of the Child Jesus, virgin and doctor" }],
+    2: [{ title: "Guardian Angels" }],
+    4: [{ title: "Saint Francis of Assisi" }],
+    6: [{ title: "Saint Bruno, priest" }],
+    7: [{ title: "Our Lady of the Rosary" }],
+    9: [{ title: "Saint Denis and companions, martyrs", colour: "red" }, { title: "Saint John Leonardi, priest" }],
+    11: [{ title: "Saint John XXIII, pope" }],
+    14: [{ title: "Saint Callistus I, pope and martyr", colour: "red" }],
+    15: [{ title: "Saint Teresa of Jesus, virgin and doctor" }],
+    16: [{ title: "Saint Hedwig, religious" }, { title: "Saint Margaret Mary Alacoque, virgin" }],
+    17: [{ title: "Saint Ignatius of Antioch, bishop and martyr", colour: "red" }],
+    18: [{ title: "Saint Luke the Evangelist", colour: "red" }],
+    19: [{ title: "Saints Jean de Brébeuf, Isaac Jogues, priests and martyrs; and their companions, martyrs", colour: "red" }, { title: "Saint Paul of the Cross, priest" }],
+    22: [{ title: "Saint John Paul II, pope" }],
+    23: [{ title: "Saint John of Capistrano, priest" }],
+    24: [{ title: "Saint Anthony Mary Claret, bishop" }],
+    28: [{ title: "Saint Simon and Saint Jude, apostles", colour: "red" }]
+  },
+  11: {
+    1: [{ title: "All Saints" }],
+    2: [{ title: "All Souls" }],
+    3: [{ title: "Saint Martin de Porres, religious", colour: "red" }],
+    4: [{ title: "Saint Charles Borromeo, bishop" }],
+    9: [{ title: "Dedication of the Lateran basilica" }],
+    10: [{ title: "Saint Leo the Great, pope and doctor" }],
+    11: [{ title: "Saint Martin of Tours, bishop", colour: "red" }],
+    12: [{ title: "Saint Josaphat, bishop and martyr", colour: "red" }],
+    15: [{ title: "Saint Albert the Great, bishop and doctor" }],
+    16: [{ title: "Saint Margaret of Scotland" }, { title: "Saint Gertrude the Great, virgin" }],
+    17: [{ title: "Saint Elizabeth of Hungary, religious" }],
+    18: [{ title: "Dedication of the basilicas of Saints Peter and Paul, Apostles" }],
+    21: [{ title: "Presentation of the Blessed Virgin Mary" }],
+    22: [{ title: "Saint Cecilia" }],
+    23: [{ title: "Saint Clement I, pope and martyr", colour: "red" }, { title: "Saint Columban, religious" }],
+    24: [{ title: "Saint Andrew Dung Lac and his companions, martyrs", colour: "red" }],
+    25: [{ title: "Saint Catherine of Alexandria" }],
+    30: [{ title: "Saint Andrew the Apostle", colour: "red" }]
+  },
+  12: {
+    3: [{ title: "Saint Francis Xavier, priest" }],
+    4: [{ title: "Saint John Damascene, priest and doctor" }],
+    6: [{ title: "Saint Nicholas, bishop" }],
+    7: [{ title: "Saint Ambrose, bishop and doctor" }],
+    8: [{ title: "Immaculate Conception of the Blessed Virgin Mary" }],
+    9: [{ title: "Saint Juan Diego" }],
+    11: [{ title: "Saint Damasus I, pope" }],
+    12: [{ title: "Our Lady of Guadalupe" }],
+    13: [{ title: "Saint Lucy of Syracuse, virgin and martyr", colour: "red" }],
+    14: [{ title: "Saint John of the Cross, priest and doctor" }],
+    21: [{ title: "Saint Peter Canisius, priest and doctor" }],
+    23: [{ title: "Saint John of Kanty, priest" }],
+    26: [{ title: "Saint Stephen, the first martyr", colour: "red" }],
+    27: [{ title: "Saint John the Apostle and evangelist" }],
+    28: [{ title: "Holy Innocents, martyrs", colour: "red" }],
+    29: [{ title: "Saint Thomas Becket, bishop and martyr", colour: "red" }],
+    31: [{ title: "Saint Sylvester I, pope" }]
+  }
+};
 
 export async function fetchDate(date) {
-  const dstr = format(date, "YYYY/M/D");
-  const response = await fetch(
-    `http://calapi.inadiutorium.cz/api/v0/en/calendars/default/${dstr}`
-  );
-  const json = await response.json();
-  return get(json, "celebrations.0", { title: "Error: seek redemption" });
+  const month = date.getMonth() + 1; // JavaScript months are 0-indexed
+  const day = date.getDate();
+  
+  const celebrations = calendarData[month]?.[day];
+  
+  if (celebrations && celebrations.length > 0) {
+    // Return the first celebration
+    return celebrations[0];
+  }
+  
+  return { title: "Error: seek redemption" };
 }

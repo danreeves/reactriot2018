@@ -3,7 +3,7 @@ import { Provider, Subscribe } from "unstated";
 import UserState from "../state/user";
 import Login from "./login";
 import Game from "./game";
-import Logo from "./Logo";
+import Logo from "./logo";
 
 export default class App extends React.Component {
   render() {
